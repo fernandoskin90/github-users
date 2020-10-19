@@ -1,10 +1,11 @@
-body, .App {
+body,
+.App {
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 
 .App {
@@ -17,10 +18,10 @@ body, .App {
   height: 55px;
 }
 
-.repos-table-container {
-  height: calc(100vh - 55px);
-  .ant-table {
-    height: 250px;
-    overflow-y: auto;
-  }
-}
+// .repos-table-container {
+//   height: calc(100vh - 55px);
+//   .ant-table {
+//     height: 250px;
+//     overflow-y: auto;
+//   }
+// }

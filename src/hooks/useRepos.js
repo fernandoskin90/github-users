@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 // @http
 import { getReposByUSer } from 'http/users'
+import { REPOS_URL } from 'constants/constants'
 
 const PAGE_SIZE = 5
 
@@ -15,9 +16,8 @@ export default function useRepos () {
 
     const onSearch = async (reposUrl, newPage = -1) => {
         try {
-            console.log('url ==>', { reposUrl, url })
             setLoading(true)
-            const urlToUse = reposUrl || localStorage.getItem('reposUrl')
+            const urlToUse = reposUrl || localStorage.getItem(REPOS_URL)
             const pageToSearch = newPage > 0 ? newPage : currentPage + 1
             const currentUrl = `${urlToUse}?page=${pageToSearch}&per_page=${PAGE_SIZE}`
             const data = await getReposByUSer(currentUrl)

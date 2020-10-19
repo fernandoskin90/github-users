@@ -1,0 +1,7 @@
+.repos-table-container {
+  height: calc(100vh - 55px);
+  .ant-table {
+    height: 250px;
+    overflow-y: auto;
+  }
+}

@@ -1,5 +1,6 @@
 // @vendors
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import './styles.scss'
 
 // @hooks
@@ -7,8 +8,10 @@ import useInput from 'hooks/useInput'
 
 // @components
 import Input from 'components/input'
+import { USER_INFO } from 'constants/constants'
 
 export function UserRegister () {
+    const history = useHistory()
     const {
         errorMessage: userNameErrorMessage,
         setErrorMessage: setUserNameErrorMessage,
@@ -51,7 +54,7 @@ export function UserRegister () {
         setValue: setGithubname
     } = useInput({ required: true })
 
-    const handleCancel = () => {
+    const handleClean = () => {
         // onCancel()
         setUserNameErrorMessage('')
         setSurnameErrorMessege('')
@@ -67,10 +70,29 @@ export function UserRegister () {
         setGithubname('')
     }
 
+    const saveUser = (event) => {
+        event.preventDefault()
+        const user = {
+            username,
+            surname,
+            email,
+            birthdate,
+            identification,
+            githubname
+        }
+        document.cookie = user
+        localStorage.setItem(USER_INFO, JSON.stringify(user))
+        history.push('/search')
+    }
+
+    const isDisable = !username || !!userNameErrorMessage || !surname ||
+    surnameErrorMessage || !identification || identificationErrorMessage || !email || !!emailErrorMessage || !githubname || !!githubnameErrorMessage ||
+    !birthdate || !!birthdateErrorMessage
+
     return (
         <div className="register-page">
             <div className="register-form-container">
-                <form className="register-form">
+                <form className="register-form" onSubmit={saveUser}>
                     <div className="register-form__title">Register User</div>
                     <Input
                         className="register-form__username"
@@ -125,13 +147,14 @@ export function UserRegister () {
                     <button
                         className="register-form__submit-button"
                         type="submit"
+                        disabled={isDisable}
                     >
                         Register User
                     </button>
 
                     <button
                         className="register-form__cancel-button"
-                        onClick={handleCancel}
+                        onClick={handleClean}
                         type="button"
                     >
                         Cancel

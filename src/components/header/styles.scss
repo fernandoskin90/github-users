@@ -8,6 +8,10 @@
   padding: 0 10px;
 
   &__logo {
+    a {
+      text-decoration: none;
+      color: #fff
+    }
     .anticon {
       font-size: 30px;
     }
@@ -15,5 +19,21 @@
 
   &__search {
     color: #000000;
+    input {
+      border: none;
+      color: gray;
+      outline: none;
+      border: solid 2px gray;
+      border-radius: 15px;
+      padding: 4px 10px;
+      &::placeholder {
+        color: gray;
+      }
+
+      &:focus {
+        border: solid 2px #0e918c;
+      }
+    }
+
   }
 }

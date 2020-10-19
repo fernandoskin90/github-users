@@ -1,11 +1,16 @@
 // @Vendors
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useCallback } from 'react'
 import { Table } from 'antd'
+import './styles.scss'
 
 // @Context
 import { ReposContext } from 'context/index'
 
-const sort = (a, b, key) => a[key].length - b[key].length
+const sort = (a, b, key) => {
+    if (a[key] && b[key]) {
+        return a[key].length - b[key].length
+    }
+}
 
 const columns = [
     {
@@ -47,8 +52,8 @@ const columns = [
 ]
 
 export function ReposTable () {
-    const { repos, loading, onSearch, url } = useContext(ReposContext)
-    const dataSource = repos.map(rp => {
+    const { repos, loading, onSearch } = useContext(ReposContext)
+    const dataSource = repos.map((rp) => {
         return {
             key: rp.id,
             url: rp.url,
@@ -65,26 +70,30 @@ export function ReposTable () {
         pagination: false
     }
 
-    const tableBodyScroll = (event) => {
+    const tableBodyScroll = useCallback((event) => {
         const { target } = event
-        const scrollBottom = (target.scrollHeight - target.scrollTop) === target.clientHeight
+        const scrollBottom =
+      target.scrollHeight - target.scrollTop === target.clientHeight
         const scrollTop = target.scrollTop === 0
 
         if (scrollBottom && !scrollTop) {
             onSearch()
         }
-    }
+    }, [onSearch])
 
     useEffect(() => {
-        document.querySelector('.repos-table .ant-table').addEventListener('scroll', tableBodyScroll)
+        document
+            .querySelector('.repos-table .ant-table')
+            .addEventListener('scroll', tableBodyScroll)
         return () => {
-            document.querySelector('.repos-table .ant-table').removeEventListener('scroll', tableBodyScroll)
+            document
+                .querySelector('.repos-table .ant-table')
+                .removeEventListener('scroll', tableBodyScroll)
         }
     }, [tableBodyScroll])
     return (
         <div className="repos-table-container">
-            <Table className="repos-table" {...tableConfig} sticky/>
-            <span>{url}</span>
+            <Table className="repos-table" {...tableConfig} sticky />
         </div>
     )
 }
