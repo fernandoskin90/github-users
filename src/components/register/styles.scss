@@ -1,0 +1,107 @@
+.register-page {
+	display: flex;
+	align-items: center;
+  justify-content: center;
+  margin-top: 45px;
+}
+.register-form-container {
+	height: 650px;
+	width: 600px;
+	border-radius: 20px;
+	box-shadow: 1px 3px 7px 0 rgba(0, 0, 0, 0.4);
+	display: flex;
+}
+
+.register-form {
+	height: 100%;
+	width: 650px;
+	border-radius: 20px 0 0 20px;
+	padding: 20px 60px;
+	font-size: 1rem;
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		height: 90px;
+		font-size: 1.7rem;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__username,
+  &__surname,
+  &__identification,
+	&__birthdate,
+	&__email {
+    height: 70px;
+    width: 100%;
+    margin-bottom: -10px;
+	}
+
+	&__submit-button,
+	&__cancel-button {
+    width: 100%;
+	}
+
+	&__submit-button {
+		background: none;
+		border: none;
+		outline: none;
+
+		border-radius: 15px;
+		padding: 5px 10px;
+		margin-bottom: 15px;
+		text-align: center;
+
+		&[disabled] {
+			background-color: lightgray;
+
+			&:hover {
+				cursor: default;
+			}
+		}
+
+		&:hover {
+			cursor: pointer;
+			color: #FFFFFF;
+		}
+	}
+
+	&__submit-button {
+		background-color: #0e918c;
+		color: #FFFFFF;
+		margin-top: 15px;
+		font-size: 1.1rem;
+	}
+
+	&__cancel-button {
+		font-size: 1.1rem;
+		border-radius: 15px;
+		padding: 5px 10px;
+		margin-bottom: 15px;
+		text-align: center;
+		outline: none;
+		background: none;
+	}
+
+	&--loading {
+		&::before {
+			content: "";
+			height: 100%;
+			width: 100%;
+			background-color: rgba(lightgray, 0.5);
+			border-radius: 20px 0 0 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.ant-spin {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+		}
+	}
+}

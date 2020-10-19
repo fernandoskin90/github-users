@@ -1,0 +1,26 @@
+body, .App {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  height: 55px;
+}
+
+.repos-table-container {
+  height: calc(100vh - 55px);
+  .ant-table {
+    height: 250px;
+    overflow-y: auto;
+  }
+}

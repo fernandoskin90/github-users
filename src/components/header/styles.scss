@@ -1,0 +1,19 @@
+.header {
+  align-items: center;
+  background-color: #000000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+
+  &__logo {
+    .anticon {
+      font-size: 30px;
+    }
+  }
+
+  &__search {
+    color: #000000;
+  }
+}
